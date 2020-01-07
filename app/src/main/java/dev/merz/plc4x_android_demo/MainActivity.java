@@ -40,7 +40,7 @@ public class MainActivity extends AppCompatActivity {
         final LogConfigurator logConfigurator = new LogConfigurator();
 
         logConfigurator.setFileName(getApplicationContext().getExternalFilesDir("log").getAbsolutePath() + "app.log");
-        logConfigurator.setRootLevel(Level.WARN);
+        logConfigurator.setRootLevel(Level.DEBUG);
         // Set log level of a specific logger
         logConfigurator.setLevel("org.apache", Level.ERROR);
         logConfigurator.configure();
