@@ -20,6 +20,7 @@ import org.apache.log4j.Level;
 import org.apache.log4j.chainsaw.Main;
 import org.apache.plc4x.java.PlcDriverManager;
 import org.apache.plc4x.java.api.PlcConnection;
+import org.apache.plc4x.java.api.messages.PlcReadResponse;
 
 import de.mindpipe.android.logging.log4j.LogConfigurator;
 
@@ -65,6 +66,16 @@ public class MainActivity extends AppCompatActivity {
                         Log.d("PLC4X", "This connection doesn't support reading.");
                         return;
                     }
+
+                    PlcReadResponse response = plcConnection.readRequestBuilder()
+                            .addItem("item1", "%DB555.DBD0:DINT")
+                            .build()
+                            .execute()
+                            .get();
+                    Long res = response.getLong("item1");
+
+                    Snackbar.make(view, res.toString(), Snackbar.LENGTH_LONG)
+                    .setAction("Action", null).show();
 
                 } catch (Exception e) {
                     Log.d("PLC4X", "PlcConnection: " + e.getMessage());
