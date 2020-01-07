@@ -34,13 +34,13 @@ public class MainActivity extends AppCompatActivity {
         if (ContextCompat.checkSelfPermission(MainActivity.this, Manifest.permission.WRITE_EXTERNAL_STORAGE)
                 != PackageManager.PERMISSION_GRANTED) {
             Log.d("PLC4X", "No permission");
-            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, 1);
+            ActivityCompat.requestPermissions(MainActivity.this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE, Manifest.permission.INTERNET}, 1);
         }
 
         final LogConfigurator logConfigurator = new LogConfigurator();
 
         logConfigurator.setFileName(getApplicationContext().getExternalFilesDir("log").getAbsolutePath() + "app.log");
-        logConfigurator.setRootLevel(Level.DEBUG);
+        logConfigurator.setRootLevel(Level.WARN);
         // Set log level of a specific logger
         logConfigurator.setLevel("org.apache", Level.ERROR);
         logConfigurator.configure();
